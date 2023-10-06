@@ -9,7 +9,7 @@ def test_class_item():
 
 def test_calculate_total_price(test_class_item):
     """
-    Когда мы создаем экземляр класса с определенной ценой
+    При создании экземляр класса с определенной ценой
     и количеством, должно вернутся произведение этих чисел.
     """
     assert test_class_item.calculate_total_price() == 75000
