@@ -23,9 +23,15 @@ class Item:
 
 
     def __repr__(self):
-        return f"{self.__class__.__name__}, {self.__name}', {self.price}, {self.quantity}"
+        """
+        Возвращает информацию для разрабочика в режиме отладки.
+        """
+        return f"{self.__class__.__name__}('{self.__name}', {self.price}, {self.quantity})"
 
     def __str__(self):
+        """
+        Возвращает пользовательскую информацию о классе.
+        """
         return f"{self.__name}"
 
 
