@@ -18,3 +18,20 @@ def test_apply_discount(test_class_item):
     """При создании экземпляра класса с определенной ценой, должна вернуться цена с учетом скидки"""
     Item.pay_rate = 0.8
     assert test_class_item.apply_discount() == 12000
+
+
+def test_string_to_number():
+    assert Item.string_to_number('5') == 5
+    assert Item.string_to_number('5.0') == 5
+    assert Item.string_to_number('5.5') == 5
+
+
+def test_name_setter():
+    item = Item('Телефон', 10000, 5)
+    item.name = 'Смартфон'
+    assert item.name == 'Смартфон'
+
+    item.name = 'СуперСмартфон'
+    assert item.name != 'Смартфон'
+
+
