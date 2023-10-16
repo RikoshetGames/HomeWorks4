@@ -35,6 +35,9 @@ class Item:
         return f"{self.__name}"
 
     def __add__(self, other):
+        """
+        Сложение экземпляров класса "Phone" и "Item".
+        """
         if isinstance(other, Item):
             return self.quantity + other.quantity
         else:
