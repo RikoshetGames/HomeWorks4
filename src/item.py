@@ -40,8 +40,7 @@ class Item:
         """
         if isinstance(other, Item):
             return self.quantity + other.quantity
-        else:
-            return NotImplemented
+        raise ValueError('Складывать можно только объекты Item и дочерние от них.')
 
 
     def calculate_total_price(self) -> float:
