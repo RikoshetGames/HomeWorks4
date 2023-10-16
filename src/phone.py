@@ -10,6 +10,7 @@ class Phone(Item):
         self.__name = name
         self._number_of_sim = number_of_sim
 
+
     def __repr__(self):
         """
         Возвращает информацию для разрабочика в режиме отладки.

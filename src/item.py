@@ -34,6 +34,7 @@ class Item:
         """
         return f"{self.__name}"
 
+
     def __add__(self, other):
         """
         Сложение экземпляров класса "Phone" и "Item".
