@@ -14,10 +14,17 @@ def test_calculate_total_price(test_class_item):
     """
     assert test_class_item.calculate_total_price() == 75000
 
+
 def test_apply_discount(test_class_item):
     """При создании экземпляра класса с определенной ценой, должна вернуться цена с учетом скидки"""
     Item.pay_rate = 0.8
     assert test_class_item.apply_discount() == 12000
+    assert test_class_item.price == 12000
+
+
+def test_add():
+    assert Item("iPhone 14", 120000, 5) + Item("iPhone 14", 120000, 5) == 10
+
 
 
 def test_string_to_number():
@@ -43,5 +50,3 @@ def test_repr():
 def test_str():
     item = Item("Смартфон", 10000, 20)
     assert str(item) == 'Смартфон'
-
-

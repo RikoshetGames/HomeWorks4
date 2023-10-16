@@ -34,6 +34,12 @@ class Item:
         """
         return f"{self.__name}"
 
+    def __add__(self, other):
+        if isinstance(other, Item):
+            return self.quantity + other.quantity
+        else:
+            return NotImplemented
+
 
     def calculate_total_price(self) -> float:
         """
