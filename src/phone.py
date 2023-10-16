@@ -34,7 +34,6 @@ class Phone(Item):
         """
         if isinstance(value, int):
             self._number_of_sim = value
-        else:
-            raise ValueError("Количество физических SIM-карт должно быть целым числом больше нуля.")
+        raise ValueError("Количество физических SIM-карт должно быть целым числом больше нуля.")
 
 
