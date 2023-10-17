@@ -10,6 +10,7 @@ def test_init():
     assert item.price == 10000
     assert item.quantity == 5
 
+
 @pytest.fixture
 def test_class_item():
     return Item("Ноутбук", 15000, 5)
