@@ -1,5 +1,5 @@
-import pytest
 from src.phone import Phone
+import pytest
 
 def test_init():
     phone = Phone("Xiaomi 12", 30000, 5, 2)

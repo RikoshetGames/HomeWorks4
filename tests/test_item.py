@@ -30,6 +30,8 @@ def test_apply_discount(test_class_item):
     assert test_class_item.price == 12000
 
 
+
+
 def test_add():
     assert Item("iPhone 14", 120000, 5) + Item("iPhone 14", 120000, 5) == 10
 
