@@ -10,6 +10,7 @@ class MixinLang:
 
     @property
     def language(self) -> str:
+        """Метод для получения языка."""
         return self._language
 
 
@@ -23,6 +24,7 @@ class Keyboard(Item, MixinLang):
 
 
     def change_lang(self):
+        """Метод для изменения языка."""
         if self._language == "EN":
             self._language = "RU"
         elif self._language == "RU":
