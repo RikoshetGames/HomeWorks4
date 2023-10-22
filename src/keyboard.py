@@ -16,7 +16,6 @@ class MixinLang:
 
 class Keyboard(Item, MixinLang):
     """Класс `Keyboard` для объекта клавиатуры, отнаследован от 'Item'."""
-
     def __init__(self, name: str, price: float, quantity: int, language: str = "EN") -> None:
         """Создание экземпляра класса `Keyboard`."""
         super().__init__(name, price, quantity)
