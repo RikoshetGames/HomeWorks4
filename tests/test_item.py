@@ -64,14 +64,14 @@ def test_str():
 
 def test_instantiate_from_csv_not_file():
     with pytest.raises(FileNotFoundError):
-        item = Item.instantiate_from_csv("invalid_file.csv")
-        assert str(item) == "Отсутствует файл invalid_file.csv"
+        Item.instantiate_from_csv("src/iteme.csv")
 
 
 def test_instantiate_from_csv_error_file():
     with pytest.raises(InstantiateCSVError):
-        item = Item.instantiate_from_csv("src/item.csv")
-        assert str(item) == "Файл src/item.csv поврежден"
+        Item.instantiate_from_csv("src/item.csv")
+
+
 
 
 
