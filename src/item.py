@@ -1,20 +1,11 @@
 import csv
-
+import os
 
 
 class InstantiateCSVError(Exception):
-    """Исключение, выбрасываемое при повреждении файла `item.csv`."""
-    def __init__(self, file=None):
-        super().__init__(f"Файл {file} поврежден")
-        if file:
-            self.message = file
-        else:
-            f"Файл {file} поврежден"
-        self.file = file
-
-
-    def __str__(self):
-        return self.message
+    def __init__(self, *args, **kwargs):
+        self.message = f'Файл {kwargs.get("filename")} поврежден'
+        super().__init__(self.message)
 
 
 
@@ -58,7 +49,7 @@ class Item:
         """
         if isinstance(other, Item):
             return self.quantity + other.quantity
-        raise ValueError('Складывать можно только объекты Item и дочерние от них.')
+        raise ValueError("Складывать можно только объекты Item и дочерние от них.")
 
 
     def calculate_total_price(self) -> float:
@@ -80,24 +71,30 @@ class Item:
 
 
     @classmethod
-    def instantiate_from_csv(cls, filename="item.csv"):
+    def instantiate_from_csv(cls, filename: str) -> None:
         """
         Инициализируюет экземпляры класса `Item` данными из файла src/items.csv.
         """
-        file_path = f"../src/{filename}"
+        file_path = f"../{filename}"
         cls.all = []
         try:
-            with (open(file_path, "r", newline="", encoding="cp1251") as file):
+            with open(file_path, "r", newline="", encoding="utf-8") as file:
                 reader = csv.DictReader(file)
                 for row in reader:
+                    if "name" not in row or "price" not in row or "quantity" not in row:
+                        raise InstantiateCSVError
                     name = row["name"]
                     price = float(row["price"])
                     quantity = int(row["quantity"])
                     cls(name, price, quantity)
+        except InstantiateCSVError:
+            print(f"Файл {filename} поврежден")
+            raise
+
         except FileNotFoundError:
             print(f"Отсутствует файл {filename}")
-        except KeyError:
-            print(f"Файл {filename} поврежден")
+            raise
+
 
     @staticmethod
     def string_to_number(value: str) -> int:
