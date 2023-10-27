@@ -1,6 +1,23 @@
 import csv
 
 
+
+class InstantiateCSVError(Exception):
+    """Исключение, выбрасываемое при повреждении файла `item.csv`."""
+    def __init__(self, file=None):
+        super().__init__(f"Файл {file} поврежден")
+        if file:
+            self.message = file
+        else:
+            f"Файл {file} поврежден"
+        self.file = file
+
+
+    def __str__(self):
+        return self.message
+
+
+
 class Item:
     """
     Класс для представления товара в магазине.
@@ -63,17 +80,24 @@ class Item:
 
 
     @classmethod
-    def instantiate_from_csv(cls, file_path):
+    def instantiate_from_csv(cls, filename="item.csv"):
         """
         Инициализируюет экземпляры класса `Item` данными из файла src/items.csv.
         """
-        with (open(file_path, "r") as file):
-            reader = csv.DictReader(file)
-            for row in reader:
-                name = row["name"]
-                price = float(row["price"])
-                quantity = int(row["quantity"])
-                cls(name, price, quantity)
+        file_path = f"../src/{filename}"
+        cls.all = []
+        try:
+            with (open(file_path, "r", newline="", encoding="cp1251") as file):
+                reader = csv.DictReader(file)
+                for row in reader:
+                    name = row["name"]
+                    price = float(row["price"])
+                    quantity = int(row["quantity"])
+                    cls(name, price, quantity)
+        except FileNotFoundError:
+            print(f"Отсутствует файл {filename}")
+        except KeyError:
+            print(f"Файл {filename} поврежден")
 
     @staticmethod
     def string_to_number(value: str) -> int:
@@ -99,5 +123,9 @@ class Item:
         :return: Новое название товара.
         """
         self.__name = name[:10]
+
+
+
+
 
 
